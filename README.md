@@ -1,26 +1,67 @@
-# Pixel Perfect Echo
+# LigaPro MZ
 
-Implement exactly the screenshot and nothing else
+**LigaPro MZ** é uma plataforma moçambicana de descoberta de profissionais e empresas. Ajuda clientes a encontrar prestadores de serviços por categoria e localização, consultar os seus perfis e entrar em contacto.
 
-This project was built with [Lovable](https://lovable.dev).
+**Aplicação:** https://pixel-perfect-echo-0927.lovable.app  
+**Repositório:** https://github.com/titos25-lab/pixel-perfect-echo-0927
 
-**Live app**: https://pixel-perfect-echo-0927.lovable.app
+## Funcionalidades actuais
 
-## Build with Lovable
+- Pesquisa de profissionais por serviço, especialidade e localização.
+- Categorias para saúde, psicologia, advocacia, fotografia, beleza, educação, tecnologia, consultoria, construção, automóveis, eventos, limpeza, marketing e outros serviços.
+- Perfis públicos de profissionais e empresas.
+- Registo e autenticação de clientes e profissionais.
+- Edição e publicação do perfil profissional.
+- Página de planos com opções gratuitas e subscrições mensais.
+- Interface responsiva em português (Moçambique).
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8693efa6-e6b6-4ef7-95b3-46db32964eed).
+## Planos mensais
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+| Plano | Preço mensal |
+| --- | ---: |
+| Gratuito | 0 MT |
+| Basic | 150 MT |
+| Professional | 350 MT |
+| Premium | 750 MT |
+| Business | 1.500 MT |
 
-## Development
+Os planos pagos são solicitados na plataforma e, nesta fase, a validação do pagamento e a activação são manuais. Não existe cobrança automática ou renovação automática implementada.
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Stack técnica
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+- React + TypeScript
+- TanStack Start e TanStack Router
+- Tailwind CSS e componentes shadcn/ui
+- Supabase para autenticação, base de dados e armazenamento
+- Vitest e ESLint
+
+## Desenvolvimento local
+
+Requisitos: Node.js compatível com o projecto e npm ou Bun.
+
+```bash
+git clone https://github.com/titos25-lab/pixel-perfect-echo-0927.git
+cd pixel-perfect-echo-0927
+npm install
 npm run dev
 ```
+
+Comandos disponíveis:
+
+```bash
+npm run build
+npm run lint
+npm test
+```
+
+## Configuração e segurança
+
+- Configure as variáveis de ambiente exigidas pela integração Supabase no ambiente de desenvolvimento e no painel de Secrets do Lovable.
+- Nunca adicione `.env`, tokens, palavras-passe, chaves privadas ou credenciais ao Git.
+- O ficheiro `.env.example` pode conter apenas nomes de variáveis e valores fictícios, nunca segredos reais.
+- As chaves privadas e operações privilegiadas devem permanecer no servidor.
+- Antes de publicar alterações, execute build, lint e testes.
+
+## Desenvolvimento com Lovable
+
+O projecto está ligado ao Lovable. Alterações feitas na branch principal podem sincronizar para o editor Lovable. Evite reescrever o histórico Git publicado; faça alterações através de novos commits.
