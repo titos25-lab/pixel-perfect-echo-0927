@@ -1,23 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+import {createFileRoute,Link,useNavigate} from '@tanstack/react-router';
+import {useSuspenseQuery} from '@tanstack/react-query';
+import {ArrowRight,ShieldCheck,MapPin,Check,UsersRound,HandHeart,BadgeCheck} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {categories} from '@/features/marketplace/data';
+import {professionalsQuery} from '@/features/marketplace/marketplace.functions';
+import {ProfessionalCard,SearchBar} from '@/features/marketplace/marketplace-ui';
+import hero from '@/assets/ligapro-hero.asset.json';
+export const Route=createFileRoute('/')({
+ head:()=>({meta:[{title:'LigaPro MZ — Profissionais de confiança em Moçambique'},{name:'description',content:'Encontre profissionais perto de si. Explore serviços de saúde, fotografia, advocacia e muito mais em Moçambique.'},{property:'og:title',content:'LigaPro MZ — Encontre. Compare. Marque. Contrate.'},{property:'og:description',content:'O talento de Moçambique, mais perto de si. Encontre profissionais e empresas numa só plataforma.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+ loader:({context})=>context.queryClient.ensureQueryData(professionalsQuery()),component:Home,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+function Home(){const {data}=useSuspenseQuery(professionalsQuery());const navigate=useNavigate();return <>
+ <section className="hero"><img src={hero.url} className="hero-image" alt="Profissional moçambicana num atelier de arquitectura"/><div className="container hero-content"><div className="eyebrow"><span className="eyebrow-dot"/>O TALENTO DE MOÇAMBIQUE, MAIS PERTO DE SI</div><h1>Profissionais de confiança.<br/><span>Ao seu alcance.</span></h1><p className="hero-description">Do que precisa, a quem sabe fazer.<br/>Encontre o profissional certo para cada momento.</p><SearchBar onSearch={(q,l)=>void navigate({to:'/profissionais',search:{q,local:l}})}/><div className="hero-assurance"><span><Check/>Profissionais de várias áreas</span><span><Check/>Contacto directo</span><span><Check/>Comece gratuitamente</span></div></div></section>
+ <div className="trust-strip"><div className="container trust-inner"><div className="trust-item"><ShieldCheck/><div><strong>Confiança em primeiro lugar</strong><span>Perfis e informações transparentes</span></div></div><div className="trust-item"><MapPin/><div><strong>Talento perto de si</strong><span>Em todo o Moçambique</span></div></div><div className="trust-item"><HandHeart/><div><strong>Uma ligação mais humana</strong><span>Pessoas certas. Melhores resultados.</span></div></div></div></div>
+ <section className="container section"><div className="section-header"><div><h2>O que precisa hoje?</h2><p>Descubra profissionais para cuidar de si, da sua casa e do seu negócio.</p></div><Link className="section-link" to="/profissionais">Todas as categorias<ArrowRight size={15}/></Link></div><div className="categories-grid">{[categories[0],categories[3],categories[4],categories[2],categories[5],categories[6],categories[8],categories[7]].filter(c=>c!==undefined).map(c=><Link key={c.name} to="/profissionais" search={{categoria:c.name}} className="category-tile"><div className="category-icon"><c.icon/></div><span>{c.name}</span></Link>)}</div></section>
+ <section className="recommendations"><div className="container section"><div className="section-header"><div><div className="eyebrow mb-2"><UsersRound size={14}/>CONHEÇA O TALENTO LOCAL</div><h2>Encontre a sua próxima ligação</h2><p>Profissionais de diferentes áreas, numa só plataforma.</p></div><Link to="/profissionais" className="section-link">Ver todos<ArrowRight size={15}/></Link></div><div className="professional-grid">{data.slice(0,4).map(p=><ProfessionalCard key={p.id} professional={p}/>)}{data.length===0&&<div className="empty-state">Os primeiros profissionais estão a chegar.</div>}</div></div></section>
+ <section className="container section"><div className="section-header"><div><h2>Da procura à solução. Sem complicações.</h2><p>Encontre. Compare. Marque. Contrate.</p></div><Link className="section-link" to="/como-funciona">Como funciona<ArrowRight size={15}/></Link></div><div className="steps-grid"><div><span className="step-number">01 / ENCONTRE</span><h3>Procure o talento certo</h3><p>Escolha a área e a localização. Descubra quem pode ajudar, perto de si.</p></div><div><span className="step-number">02 / COMPARE</span><h3>Conheça os profissionais</h3><p>Explore especialidades, apresentações e contactos. Encontre uma boa combinação.</p></div><div><span className="step-number">03 / LIGUE-SE</span><h3>Dê o próximo passo</h3><p>Entre em contacto com o profissional e converse sobre o serviço de que precisa.</p></div></div></section>
+ <section className="professional-band"><div className="container band-inner"><div><div className="eyebrow mb-2"><BadgeCheck size={15}/>PARA QUEM SABE FAZER</div><h2>O seu talento merece ser encontrado.</h2><p>Crie o seu perfil e apresente o seu trabalho a novos clientes.</p></div><Button variant="positive" size="lg" asChild><Link to="/auth" search={{modo:'registo',tipo:'professional'}}>Criar perfil profissional<ArrowRight/></Link></Button></div></section>
+ </>;}
