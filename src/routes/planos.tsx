@@ -44,7 +44,7 @@ function Plans() {
               </ul>
               <Button variant={featured || plan.price === 0 ? 'positive' : 'outline'} asChild className="w-full">
                 <Link to="/auth" search={{ modo: 'registo', tipo: 'professional' }}>
-                  {plan.price === 0 ? 'Criar perfil gratuito' : 'Escolher este plano'}
+                  {plan.price === 0 ? 'Criar perfil gratuito' : 'Criar conta para solicitar'}
                   <ArrowRight />
                 </Link>
               </Button>
