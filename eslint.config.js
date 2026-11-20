@@ -37,12 +37,6 @@ export default tseslint.config(
     },
   },
   eslintPluginPrettier,
-);
-  {
-    rules: {
-      "prettier/prettier": "off",
-    },
-  },
   {
     rules: {
       "prettier/prettier": "off",
