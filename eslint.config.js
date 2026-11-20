@@ -43,4 +43,9 @@ export default tseslint.config(
       "prettier/prettier": "off",
     },
   },
+  {
+    rules: {
+      "prettier/prettier": "off",
+    },
+  },
 );
