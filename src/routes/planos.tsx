@@ -6,9 +6,9 @@ import { plans, money } from '@/features/marketplace/data';
 export const Route = createFileRoute('/planos')({
   head: () => ({
     meta: [
-      { title: 'Planos mensais para profissionais — LigaPro MZ' },
-      { name: 'description', content: 'Compare os planos mensais da LigaPro MZ para profissionais e empresas moçambicanas, a partir de 150 MT.' },
-      { property: 'og:title', content: 'Planos mensais LigaPro MZ' },
+      { title: 'Planos mensais para profissionais — DA UM TOUCH' },
+      { name: 'description', content: 'Compare os planos mensais da DA UM TOUCH para profissionais e empresas moçambicanas, a partir de 150 MT.' },
+      { property: 'og:title', content: 'Planos mensais DA UM TOUCH' },
       { property: 'og:description', content: 'Mais visibilidade, ferramentas e oportunidades para o seu negócio.' },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -73,7 +73,7 @@ function Plans() {
           <li>Escolha o plano pretendido e crie a sua conta profissional.</li>
           <li>Envie o valor correspondente ao número eMola indicado.</li>
           <li>Guarde o comprovativo e a referência/ID da transacção.</li>
-          <li>Envie o comprovativo à equipa LigaPro MZ para validação, indicando o seu nome e o plano escolhido.</li>
+          <li>Envie o comprovativo à equipa DA UM TOUCH para validação, indicando o seu nome e o plano escolhido.</li>
         </ol>
         <p className="mt-3 text-sm"><strong>Importante:</strong> a subscrição será activada apenas depois da confirmação do pagamento. Não envie PIN, palavra-passe ou código de segurança eMola a ninguém.</p>
       </section>
