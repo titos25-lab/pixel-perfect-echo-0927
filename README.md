@@ -1,6 +1,6 @@
-# LigaPro MZ
+# DA UM TOUCH
 
-**LigaPro MZ** é uma plataforma moçambicana de descoberta de profissionais e empresas. Ajuda clientes a encontrar prestadores de serviços por categoria e localização, consultar os seus perfis e entrar em contacto.
+**DA UM TOUCH** é uma plataforma moçambicana de descoberta de profissionais e empresas. Ajuda clientes a encontrar prestadores de serviços por categoria e localização, consultar os seus perfis e entrar em contacto.
 
 **Aplicação:** https://pixel-perfect-echo-0927.lovable.app  
 **Repositório:** https://github.com/titos25-lab/pixel-perfect-echo-0927
