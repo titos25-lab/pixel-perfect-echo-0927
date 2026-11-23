@@ -7,7 +7,7 @@ import {professionalsQuery} from '@/features/marketplace/marketplace.functions';
 import {ProfessionalCard,SearchBar} from '@/features/marketplace/marketplace-ui';
 import hero from '@/assets/ligapro-hero.asset.json';
 export const Route=createFileRoute('/')({
- head:()=>({meta:[{title:'LigaPro MZ — Profissionais de confiança em Moçambique'},{name:'description',content:'Encontre profissionais perto de si. Explore serviços de saúde, fotografia, advocacia e muito mais em Moçambique.'},{property:'og:title',content:'LigaPro MZ — Encontre. Compare. Marque. Contrate.'},{property:'og:description',content:'O talento de Moçambique, mais perto de si. Encontre profissionais e empresas numa só plataforma.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+ head:()=>({meta:[{title:'DA UM TOUCH — Profissionais de confiança em Moçambique'},{name:'description',content:'Encontre profissionais perto de si. Explore serviços de saúde, fotografia, advocacia e muito mais em Moçambique.'},{property:'og:title',content:'DA UM TOUCH — Encontre. Compare. Marque. Contrate.'},{property:'og:description',content:'O talento de Moçambique, mais perto de si. Encontre profissionais e empresas numa só plataforma.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
  loader:({context})=>context.queryClient.ensureQueryData(professionalsQuery()),component:Home,
 });
 function Home(){const {data}=useSuspenseQuery(professionalsQuery());const navigate=useNavigate();return <>
