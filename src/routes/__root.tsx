@@ -85,10 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "LigaPro MZ" },
+      { title: "DA UM TOUCH" },
       { name: "description", content: "Encontre profissionais e empresas de confiança em Moçambique." },
-      { name: "author", content: "LigaPro MZ" },
-      { property: "og:title", content: "LigaPro MZ" },
+      { name: "author", content: "DA UM TOUCH" },
+      { property: "og:title", content: "DA UM TOUCH" },
       { property: "og:description", content: "Encontre profissionais e empresas de confiança em Moçambique." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
