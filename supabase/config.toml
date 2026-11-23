@@ -1,1 +1,4 @@
 project_id = "yqhwkmmvbajxehlbaasd"
+
+[functions.issue-initial-code]
+verify_jwt = false
