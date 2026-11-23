@@ -13,6 +13,19 @@ function json(body: unknown, status = 200) {
   });
 }
 
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (character) => {
+    const entities: Record<string, string> = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character] ?? character;
+  });
+}
+
 function makeInitialCode() {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
   const bytes = crypto.getRandomValues(new Uint8Array(16));
@@ -47,6 +60,7 @@ Deno.serve(async (req) => {
       auth: { autoRefreshToken: false, persistSession: false },
     });
     const initialCode = makeInitialCode();
+    const safeName = escapeHtml(name.trim());
     const { data, error: createError } = await admin.auth.admin.createUser({
       email: email.trim().toLowerCase(),
       password: initialCode,
@@ -72,7 +86,7 @@ Deno.serve(async (req) => {
         from: `DA UM TOUCH <${fromEmail}>`,
         to: [email.trim().toLowerCase()],
         subject: "O seu código inicial de acesso — DA UM TOUCH",
-        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#202124"><h1 style="color:#111">DA UM TOUCH</h1><p>Olá, ${name.trim().replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]!)},</p><p>A sua conta foi criada. Use o código abaixo para entrar na plataforma:</p><div style="background:#f3f4f6;padding:18px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:3px;border-radius:8px">${initialCode}</div><p>Por segurança, altere este código depois de entrar, nas definições da sua conta. Não partilhe este código com ninguém.</p><p>Bem-vindo à DA UM TOUCH.</p></div>`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#202124"><h1 style="color:#111">DA UM TOUCH</h1><p>Olá, ${safeName},</p><p>A sua conta foi criada. Use o código abaixo para entrar na plataforma:</p><div style="background:#f3f4f6;padding:18px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:3px;border-radius:8px">${initialCode}</div><p>Por segurança, altere este código depois de entrar, nas definições da sua conta. Não partilhe este código com ninguém.</p><p>Bem-vindo à DA UM TOUCH.</p></div>`,
         text: `DA UM TOUCH\n\nOlá, ${name.trim()}. A sua conta foi criada. O seu código inicial de acesso é: ${initialCode}\n\nEntre com o seu email e este código. Depois, altere-o nas definições da sua conta. Não partilhe o código com ninguém.`,
       }),
     });
