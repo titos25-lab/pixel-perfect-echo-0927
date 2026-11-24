@@ -14,15 +14,16 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
-import { Route as PlanosRouteImport } from './routes/planos'
-import { Route as ProfissionaisRouteImport } from './routes/profissionais'
+import { Route as PrincipiosRouteImport } from './routes/principios'
+import { Route as DescobrirRouteImport } from './routes/descobrir'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedContaRouteImport } from './routes/_authenticated/conta'
-import { Route as ProfissionaisIdRouteImport } from './routes/profissionais_.$id'
+import { Route as MembroRouteImport } from './routes/membro_.$id'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as MensagensRouteImport } from './routes/mensagens'
 import { Route as ConexoesRouteImport } from './routes/conexoes'
 import { Route as JornadaRouteImport } from './routes/jornada'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,14 +49,14 @@ const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   path: '/como-funciona',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PlanosRoute = PlanosRouteImport.update({
-  id: '/planos',
-  path: '/planos',
+const PrincipiosRoute = PrincipiosRouteImport.update({
+  id: '/principios',
+  path: '/principios',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfissionaisRoute = ProfissionaisRouteImport.update({
-  id: '/profissionais',
-  path: '/profissionais',
+const DescobrirRoute = DescobrirRouteImport.update({
+  id: '/descobrir',
+  path: '/descobrir',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -68,45 +69,48 @@ const AuthenticatedContaRoute = AuthenticatedContaRouteImport.update({
   path: '/conta',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const ProfissionaisIdRoute = ProfissionaisIdRouteImport.update({
-  id: '/profissionais_/$id',
-  path: '/profissionais/$id',
+const MembroRoute = MembroRouteImport.update({
+  id: '/membro_/$id',
+  path: '/membro/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedRoute = FeedRouteImport.update({ id: '/feed', path: '/feed', getParentRoute: () => rootRouteImport } as any)
 const MensagensRoute = MensagensRouteImport.update({ id: '/mensagens', path: '/mensagens', getParentRoute: () => rootRouteImport } as any)
 const ConexoesRoute = ConexoesRouteImport.update({ id: '/conexoes', path: '/conexoes', getParentRoute: () => rootRouteImport } as any)
 const JornadaRoute = JornadaRouteImport.update({ id: '/jornada', path: '/jornada', getParentRoute: () => rootRouteImport } as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({ id: '/privacidade', path: '/privacidade', getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/planos': typeof PlanosRoute
-  '/profissionais': typeof ProfissionaisRoute
+  '/principios': typeof PrincipiosRoute
+  '/descobrir': typeof DescobrirRoute
   '/reset-password': typeof ResetPasswordRoute
   '/conta': typeof AuthenticatedContaRoute
-  '/profissionais/$id': typeof ProfissionaisIdRoute
+  '/membro/$id': typeof MembroRoute
   '/feed': typeof FeedRoute
   '/mensagens': typeof MensagensRoute
   '/conexoes': typeof ConexoesRoute
   '/jornada': typeof JornadaRoute
+  '/privacidade': typeof PrivacidadeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/planos': typeof PlanosRoute
-  '/profissionais': typeof ProfissionaisRoute
+  '/principios': typeof PrincipiosRoute
+  '/descobrir': typeof DescobrirRoute
   '/reset-password': typeof ResetPasswordRoute
   '/conta': typeof AuthenticatedContaRoute
-  '/profissionais/$id': typeof ProfissionaisIdRoute
+  '/membro/$id': typeof MembroRoute
   '/feed': typeof FeedRoute
   '/mensagens': typeof MensagensRoute
   '/conexoes': typeof ConexoesRoute
   '/jornada': typeof JornadaRoute
+  '/privacidade': typeof PrivacidadeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,15 +119,16 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/planos': typeof PlanosRoute
-  '/profissionais': typeof ProfissionaisRoute
+  '/principios': typeof PrincipiosRoute
+  '/descobrir': typeof DescobrirRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/conta': typeof AuthenticatedContaRoute
-  '/profissionais_/$id': typeof ProfissionaisIdRoute
+  '/membro_/$id': typeof MembroRoute
   '/feed': typeof FeedRoute
   '/mensagens': typeof MensagensRoute
   '/conexoes': typeof ConexoesRoute
   '/jornada': typeof JornadaRoute
+  '/privacidade': typeof PrivacidadeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,30 +137,32 @@ export interface FileRouteTypes {
     | '/admin'
     | '/auth'
     | '/como-funciona'
-    | '/planos'
-    | '/profissionais'
+    | '/principios'
+    | '/descobrir'
     | '/reset-password'
     | '/conta'
-    | '/profissionais/$id'
+    | '/membro/$id'
     | '/feed'
     | '/mensagens'
     | '/conexoes'
     | '/jornada'
+    | '/privacidade'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/admin'
     | '/auth'
     | '/como-funciona'
-    | '/planos'
-    | '/profissionais'
+    | '/principios'
+    | '/descobrir'
     | '/reset-password'
     | '/conta'
-    | '/profissionais/$id'
+    | '/membro/$id'
     | '/feed'
     | '/mensagens'
     | '/conexoes'
     | '/jornada'
+    | '/privacidade'
   id:
     | '__root__'
     | '/'
@@ -163,15 +170,16 @@ export interface FileRouteTypes {
     | '/admin'
     | '/auth'
     | '/como-funciona'
-    | '/planos'
-    | '/profissionais'
+    | '/principios'
+    | '/descobrir'
     | '/reset-password'
     | '/_authenticated/conta'
-    | '/profissionais_/$id'
+    | '/membro_/$id'
     | '/feed'
     | '/mensagens'
     | '/conexoes'
     | '/jornada'
+    | '/privacidade'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -180,14 +188,15 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
-  PlanosRoute: typeof PlanosRoute
-  ProfissionaisRoute: typeof ProfissionaisRoute
+  PrincipiosRoute: typeof PrincipiosRoute
+  DescobrirRoute: typeof DescobrirRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
-  ProfissionaisIdRoute: typeof ProfissionaisIdRoute
+  MembroRoute: typeof MembroRoute
   FeedRoute: typeof FeedRoute
   MensagensRoute: typeof MensagensRoute
   ConexoesRoute: typeof ConexoesRoute
   JornadaRoute: typeof JornadaRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -227,18 +236,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComoFuncionaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/planos': {
-      id: '/planos'
-      path: '/planos'
-      fullPath: '/planos'
-      preLoaderRoute: typeof PlanosRouteImport
+    '/principios': {
+      id: '/principios'
+      path: '/principios'
+      fullPath: '/principios'
+      preLoaderRoute: typeof PrincipiosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profissionais': {
-      id: '/profissionais'
-      path: '/profissionais'
-      fullPath: '/profissionais'
-      preLoaderRoute: typeof ProfissionaisRouteImport
+    '/descobrir': {
+      id: '/descobrir'
+      path: '/descobrir'
+      fullPath: '/descobrir'
+      preLoaderRoute: typeof DescobrirRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -255,17 +264,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedContaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/profissionais_/$id': {
-      id: '/profissionais_/$id'
-      path: '/profissionais/$id'
-      fullPath: '/profissionais/$id'
-      preLoaderRoute: typeof ProfissionaisIdRouteImport
+    '/membro_/$id': {
+      id: '/membro_/$id'
+      path: '/membro/$id'
+      fullPath: '/membro/$id'
+      preLoaderRoute: typeof MembroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feed': { id: '/feed'; path: '/feed'; fullPath: '/feed'; preLoaderRoute: typeof FeedRouteImport; parentRoute: typeof rootRouteImport }
     '/mensagens': { id: '/mensagens'; path: '/mensagens'; fullPath: '/mensagens'; preLoaderRoute: typeof MensagensRouteImport; parentRoute: typeof rootRouteImport }
     '/conexoes': { id: '/conexoes'; path: '/conexoes'; fullPath: '/conexoes'; preLoaderRoute: typeof ConexoesRouteImport; parentRoute: typeof rootRouteImport }
     '/jornada': { id: '/jornada'; path: '/jornada'; fullPath: '/jornada'; preLoaderRoute: typeof JornadaRouteImport; parentRoute: typeof rootRouteImport }
+    '/privacidade': { id: '/privacidade'; path: '/privacidade'; fullPath: '/privacidade'; preLoaderRoute: typeof PrivacidadeRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -286,14 +296,15 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
-  PlanosRoute: PlanosRoute,
-  ProfissionaisRoute: ProfissionaisRoute,
+  PrincipiosRoute: PrincipiosRoute,
+  DescobrirRoute: DescobrirRoute,
   ResetPasswordRoute: ResetPasswordRoute,
-  ProfissionaisIdRoute: ProfissionaisIdRoute,
+  MembroRoute: MembroRoute,
   FeedRoute: FeedRoute,
   MensagensRoute: MensagensRoute,
   ConexoesRoute: ConexoesRoute,
   JornadaRoute: JornadaRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
