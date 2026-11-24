@@ -152,6 +152,10 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/conta'
     | '/profissionais/$id'
+    | '/feed'
+    | '/mensagens'
+    | '/conexoes'
+    | '/jornada'
   id:
     | '__root__'
     | '/'
@@ -164,6 +168,10 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/conta'
     | '/profissionais_/$id'
+    | '/feed'
+    | '/mensagens'
+    | '/conexoes'
+    | '/jornada'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -254,10 +262,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfissionaisIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/feed': { id: '/feed'; path: '/feed'; fullPath: '/feed'; preLoaderRoute: typeof FeedRouteImport; parentRoute: typeof rootRouteImport }
-    '/mensagens': { id: '/mensagens'; path: '/mensagens'; fullPath: '/mensagens'; preLoaderRoute: typeof MensagensRouteImport; parentRoute: typeof rootRouteImport }
-    '/conexoes': { id: '/conexoes'; path: '/conexoes'; fullPath: '/conexoes'; preLoaderRoute: typeof ConexoesRouteImport; parentRoute: typeof rootRouteImport }
-    '/jornada': { id: '/jornada'; path: '/jornada'; fullPath: '/jornada'; preLoaderRoute: typeof JornadaRouteImport; parentRoute: typeof rootRouteImport }
     '/feed': { id: '/feed'; path: '/feed'; fullPath: '/feed'; preLoaderRoute: typeof FeedRouteImport; parentRoute: typeof rootRouteImport }
     '/mensagens': { id: '/mensagens'; path: '/mensagens'; fullPath: '/mensagens'; preLoaderRoute: typeof MensagensRouteImport; parentRoute: typeof rootRouteImport }
     '/conexoes': { id: '/conexoes'; path: '/conexoes'; fullPath: '/conexoes'; preLoaderRoute: typeof ConexoesRouteImport; parentRoute: typeof rootRouteImport }
