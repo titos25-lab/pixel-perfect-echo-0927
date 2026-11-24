@@ -1,67 +1,26 @@
-# DA UM TOUCH
+# AGAPE
 
-**DA UM TOUCH** é uma plataforma moçambicana de descoberta de profissionais e empresas. Ajuda clientes a encontrar prestadores de serviços por categoria e localização, consultar os seus perfis e entrar em contacto.
+AGAPE é uma plataforma de relacionamentos cristãos com funcionalidades de rede social, destinada a adultos solteiros de todas as denominações cristãs.
 
-**Aplicação:** https://pixel-perfect-echo-0927.lovable.app  
-**Repositório:** https://github.com/titos25-lab/pixel-perfect-echo-0927
+## Funcionalidades implementadas no projecto
+- Registo e autenticação por email.
+- Perfis pessoais e cristãos.
+- Descoberta de membros por cidade e objectivo.
+- Pedidos de conversa com aceitação ou recusa.
+- Mensagens privadas após aceitação.
+- Feed comunitário com publicações e gostos.
+- Pedidos de associação de perfis de casal.
+- Denúncias, bloqueios e painel administrativo.
+- Regras de comunidade e restrição de registo a maiores de 18 anos.
 
-## Funcionalidades actuais
+## Stack
+React 19, TypeScript, TanStack Start/Router, Tailwind CSS e Supabase Auth/Postgres/Storage com Row Level Security.
 
-- Pesquisa de profissionais por serviço, especialidade e localização.
-- Categorias para saúde, psicologia, advocacia, fotografia, beleza, educação, tecnologia, consultoria, construção, automóveis, eventos, limpeza, marketing e outros serviços.
-- Perfis públicos de profissionais e empresas.
-- Registo e autenticação de clientes e profissionais.
-- Edição e publicação do perfil profissional.
-- Página de planos com opções gratuitas e subscrições mensais.
-- Interface responsiva em português (Moçambique).
-
-## Planos mensais
-
-| Plano | Preço mensal |
-| --- | ---: |
-| Gratuito | 0 MT |
-| Basic | 150 MT |
-| Professional | 350 MT |
-| Premium | 750 MT |
-| Business | 1.500 MT |
-
-Os planos pagos são solicitados na plataforma e, nesta fase, a validação do pagamento e a activação são manuais. Não existe cobrança automática ou renovação automática implementada.
-
-## Stack técnica
-
-- React + TypeScript
-- TanStack Start e TanStack Router
-- Tailwind CSS e componentes shadcn/ui
-- Supabase para autenticação, base de dados e armazenamento
-- Vitest e ESLint
-
-## Desenvolvimento local
-
-Requisitos: Node.js compatível com o projecto e npm ou Bun.
-
+## Activação
+Configura as variáveis Supabase já utilizadas pelo projecto e aplica as migrações:
 ```bash
-git clone https://github.com/titos25-lab/pixel-perfect-echo-0927.git
-cd pixel-perfect-echo-0927
-npm install
-npm run dev
+bunx drizzle-kit migrate
 ```
+A migração 0003 cria as tabelas sociais e a migração 0004 cria bloqueios e comentários. Estas migrações ainda precisam de ser aplicadas no projecto Supabase ligado.
 
-Comandos disponíveis:
-
-```bash
-npm run build
-npm run lint
-npm test
-```
-
-## Configuração e segurança
-
-- Configure as variáveis de ambiente exigidas pela integração Supabase no ambiente de desenvolvimento e no painel de Secrets do Lovable.
-- Nunca adicione `.env`, tokens, palavras-passe, chaves privadas ou credenciais ao Git.
-- O ficheiro `.env.example` pode conter apenas nomes de variáveis e valores fictícios, nunca segredos reais.
-- As chaves privadas e operações privilegiadas devem permanecer no servidor.
-- Antes de publicar alterações, execute build, lint e testes.
-
-## Desenvolvimento com Lovable
-
-O projecto está ligado ao Lovable. Alterações feitas na branch principal podem sincronizar para o editor Lovable. Evite reescrever o histórico Git publicado; faça alterações através de novos commits.
+A moderação automática por IA e a validação de fotografias de rosto requerem um serviço de moderação e credenciais próprias. As ferramentas de denúncia e revisão administrativa não substituem essa integração.

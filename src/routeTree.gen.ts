@@ -19,6 +19,10 @@ import { Route as ProfissionaisRouteImport } from './routes/profissionais'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedContaRouteImport } from './routes/_authenticated/conta'
 import { Route as ProfissionaisIdRouteImport } from './routes/profissionais_.$id'
+import { Route as FeedRouteImport } from './routes/feed'
+import { Route as MensagensRouteImport } from './routes/mensagens'
+import { Route as ConexoesRouteImport } from './routes/conexoes'
+import { Route as JornadaRouteImport } from './routes/jornada'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -69,6 +73,10 @@ const ProfissionaisIdRoute = ProfissionaisIdRouteImport.update({
   path: '/profissionais/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedRoute = FeedRouteImport.update({ id: '/feed', path: '/feed', getParentRoute: () => rootRouteImport } as any)
+const MensagensRoute = MensagensRouteImport.update({ id: '/mensagens', path: '/mensagens', getParentRoute: () => rootRouteImport } as any)
+const ConexoesRoute = ConexoesRouteImport.update({ id: '/conexoes', path: '/conexoes', getParentRoute: () => rootRouteImport } as any)
+const JornadaRoute = JornadaRouteImport.update({ id: '/jornada', path: '/jornada', getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,6 +88,10 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/conta': typeof AuthenticatedContaRoute
   '/profissionais/$id': typeof ProfissionaisIdRoute
+  '/feed': typeof FeedRoute
+  '/mensagens': typeof MensagensRoute
+  '/conexoes': typeof ConexoesRoute
+  '/jornada': typeof JornadaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -91,6 +103,10 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/conta': typeof AuthenticatedContaRoute
   '/profissionais/$id': typeof ProfissionaisIdRoute
+  '/feed': typeof FeedRoute
+  '/mensagens': typeof MensagensRoute
+  '/conexoes': typeof ConexoesRoute
+  '/jornada': typeof JornadaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -104,6 +120,10 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/conta': typeof AuthenticatedContaRoute
   '/profissionais_/$id': typeof ProfissionaisIdRoute
+  '/feed': typeof FeedRoute
+  '/mensagens': typeof MensagensRoute
+  '/conexoes': typeof ConexoesRoute
+  '/jornada': typeof JornadaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -117,6 +137,10 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/conta'
     | '/profissionais/$id'
+    | '/feed'
+    | '/mensagens'
+    | '/conexoes'
+    | '/jornada'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -152,6 +176,10 @@ export interface RootRouteChildren {
   ProfissionaisRoute: typeof ProfissionaisRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ProfissionaisIdRoute: typeof ProfissionaisIdRoute
+  FeedRoute: typeof FeedRoute
+  MensagensRoute: typeof MensagensRoute
+  ConexoesRoute: typeof ConexoesRoute
+  JornadaRoute: typeof JornadaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -226,6 +254,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfissionaisIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feed': { id: '/feed'; path: '/feed'; fullPath: '/feed'; preLoaderRoute: typeof FeedRouteImport; parentRoute: typeof rootRouteImport }
+    '/mensagens': { id: '/mensagens'; path: '/mensagens'; fullPath: '/mensagens'; preLoaderRoute: typeof MensagensRouteImport; parentRoute: typeof rootRouteImport }
+    '/conexoes': { id: '/conexoes'; path: '/conexoes'; fullPath: '/conexoes'; preLoaderRoute: typeof ConexoesRouteImport; parentRoute: typeof rootRouteImport }
+    '/jornada': { id: '/jornada'; path: '/jornada'; fullPath: '/jornada'; preLoaderRoute: typeof JornadaRouteImport; parentRoute: typeof rootRouteImport }
+    '/feed': { id: '/feed'; path: '/feed'; fullPath: '/feed'; preLoaderRoute: typeof FeedRouteImport; parentRoute: typeof rootRouteImport }
+    '/mensagens': { id: '/mensagens'; path: '/mensagens'; fullPath: '/mensagens'; preLoaderRoute: typeof MensagensRouteImport; parentRoute: typeof rootRouteImport }
+    '/conexoes': { id: '/conexoes'; path: '/conexoes'; fullPath: '/conexoes'; preLoaderRoute: typeof ConexoesRouteImport; parentRoute: typeof rootRouteImport }
+    '/jornada': { id: '/jornada'; path: '/jornada'; fullPath: '/jornada'; preLoaderRoute: typeof JornadaRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -250,6 +286,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProfissionaisRoute: ProfissionaisRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ProfissionaisIdRoute: ProfissionaisIdRoute,
+  FeedRoute: FeedRoute,
+  MensagensRoute: MensagensRoute,
+  ConexoesRoute: ConexoesRoute,
+  JornadaRoute: JornadaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
