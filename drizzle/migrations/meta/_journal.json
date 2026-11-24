@@ -22,6 +22,13 @@
       "when": 1795540000001,
       "tag": "0002_daum_touch_accounts_and_moderation",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1795620000000,
+      "tag": "0003_agape_social_platform",
+      "breakpoints": true
     }
   ]
 }
