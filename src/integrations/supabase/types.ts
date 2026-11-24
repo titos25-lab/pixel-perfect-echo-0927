@@ -27,15 +27,15 @@ export type Database = {
         Relationships: [];
       };
       member_profiles: {
-        Row: { user_id:string; display_name:string; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; bio:string; relationship_goal:string; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
-        Insert: { user_id:string; display_name?:string; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
-        Update: { user_id?:string; display_name?:string; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
+        Row: { user_id:string; display_name:string; age:number|null; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; bio:string; relationship_goal:string; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
+        Insert: { user_id:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
+        Update: { user_id?:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
         Relationships: [];
       };
       connection_requests: {
-        Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; created_at:string; updated_at:string };
-        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; created_at?:string; updated_at?:string };
-        Update: { id?:string; sender_id?:string; receiver_id?:string; initial_message?:string; status?:string; created_at?:string; updated_at?:string };
+        Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; sender_checkin:string|null; receiver_checkin:string|null; checkin_prompted_at:string|null; created_at:string; updated_at:string };
+        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
+        Update: { id?:string; sender_id?:string; receiver_id?:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
         Relationships: [];
       };
       messages: {
@@ -183,6 +183,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      submit_connection_checkin: { Args: { _request_id:string; _response:string }; Returns: undefined }
       choose_account_type: {
         Args: { account_type: string }
         Returns: undefined
