@@ -33,8 +33,8 @@ export type Database = {
         Relationships: [];
       };
       connection_requests: {
-        Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; sender_checkin:string|null; receiver_checkin:string|null; checkin_prompted_at:string|null; created_at:string; updated_at:string };
-        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
+        Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; accepted_at:string|null; sender_checkin:string|null; receiver_checkin:string|null; checkin_prompted_at:string|null; created_at:string; updated_at:string };
+        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; accepted_at?:string|null; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
         Update: { id?:string; sender_id?:string; receiver_id?:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
         Relationships: [];
       };
@@ -189,6 +189,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      is_active_couple_journey: { Args: { _journey_id:string }; Returns: boolean }
       submit_connection_checkin: { Args: { _request_id:string; _response:string }; Returns: undefined }
       choose_account_type: {
         Args: { account_type: string }

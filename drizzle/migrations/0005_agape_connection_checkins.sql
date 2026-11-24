@@ -3,6 +3,7 @@ ALTER TABLE public.member_profiles ADD COLUMN IF NOT EXISTS age smallint;
 ALTER TABLE public.member_profiles ADD CONSTRAINT member_profiles_age_adult CHECK(age IS NULL OR age BETWEEN 18 AND 100);
 UPDATE public.member_profiles mp SET age=p.age FROM public.profiles p WHERE p.id=mp.user_id AND mp.age IS NULL;
 
+ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS accepted_at timestamptz;
 ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS sender_checkin text CHECK(sender_checkin IS NULL OR sender_checkin IN ('continue','relationship','close'));
 ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS receiver_checkin text CHECK(receiver_checkin IS NULL OR receiver_checkin IN ('continue','relationship','close'));
 ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS checkin_prompted_at timestamptz;
@@ -22,6 +23,18 @@ BEGIN
  RETURN NEW;
 END $$;
 
+CREATE OR REPLACE FUNCTION public.stamp_connection_accepted_at()
+RETURNS trigger LANGUAGE plpgsql AS $
+BEGIN
+ IF NEW.status='accepted' AND OLD.status IS DISTINCT FROM 'accepted' THEN
+   NEW.accepted_at=now();
+ END IF;
+ RETURN NEW;
+END $;
+DROP TRIGGER IF EXISTS stamp_connection_accepted_at ON public.connection_requests;
+CREATE TRIGGER stamp_connection_accepted_at BEFORE UPDATE ON public.connection_requests
+FOR EACH ROW EXECUTE FUNCTION public.stamp_connection_accepted_at();
+
 CREATE OR REPLACE FUNCTION public.submit_connection_checkin(_request_id uuid,_response text)
 RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS $$
 DECLARE connection_row public.connection_requests%ROWTYPE;
@@ -30,7 +43,7 @@ BEGIN
  IF _response NOT IN ('continue','relationship','close') THEN RAISE EXCEPTION 'Resposta inválida'; END IF;
  SELECT * INTO connection_row FROM public.connection_requests WHERE id=_request_id AND status='accepted' FOR UPDATE;
  IF NOT FOUND OR (connection_row.sender_id<>auth.uid() AND connection_row.receiver_id<>auth.uid()) THEN RAISE EXCEPTION 'Conexão não encontrada'; END IF;
- IF connection_row.created_at > now()-interval '14 days' THEN RAISE EXCEPTION 'O check-in fica disponível após 14 dias'; END IF;
+ IF COALESCE(connection_row.accepted_at,connection_row.created_at) > now()-interval '14 days' THEN RAISE EXCEPTION 'O check-in fica disponível após 14 dias'; END IF;
  IF connection_row.sender_id=auth.uid() THEN
    UPDATE public.connection_requests SET sender_checkin=_response,checkin_prompted_at=COALESCE(checkin_prompted_at,now()),updated_at=now() WHERE id=_request_id;
  ELSE
