@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Account confirmation links must return to the same-origin public auth page; email confirmation must complete before protected pages are opened.
+- Keep auth search defaults in a shared Zod schema so existing links can omit optional sign-in parameters.

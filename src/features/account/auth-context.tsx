@@ -7,7 +7,7 @@ const AuthContext = createContext<{ user: User | null; loading: boolean }>({ use
 export function AuthProvider({ children }: { children: ReactNode }) {
  const [user,setUser]=useState<User|null>(null); const [loading,setLoading]=useState(true); const router=useRouter(); const queryClient=useQueryClient();
  useEffect(()=>{let active=true;const refresh=async()=>{const {data}=await supabase.auth.getUser();if(active){setUser(data.user);setLoading(false);}};
- const {data:{subscription}}=supabase.auth.onAuthStateChange(event=>{if(!["SIGNED_IN","SIGNED_OUT","USER_UPDATED"].includes(event))return;if(event==="SIGNED_OUT"){setUser(null);queryClient.clear();}else{void refresh();void queryClient.invalidateQueries();}void router.invalidate();});
+ const {data:{subscription}}=supabase.auth.onAuthStateChange(event=>{if(!["INITIAL_SESSION","SIGNED_IN","SIGNED_OUT","USER_UPDATED","PASSWORD_RECOVERY","TOKEN_REFRESHED"].includes(event))return;if(event==="SIGNED_OUT"){setUser(null);queryClient.clear();}else{setTimeout(()=>{if(active){void refresh();void queryClient.invalidateQueries();}},0);}void router.invalidate();});
  void refresh();return()=>{active=false;subscription.unsubscribe();};},[router,queryClient]);
  return <AuthContext.Provider value={{user,loading}}>{children}</AuthContext.Provider>;
 }

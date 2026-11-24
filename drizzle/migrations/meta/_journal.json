@@ -120,6 +120,13 @@
       "when": 1795620000013,
       "tag": "0016_agape_profile_gallery",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1795620000014,
+      "tag": "0017_repair_account_signup",
+      "breakpoints": true
     }
   ]
 }
