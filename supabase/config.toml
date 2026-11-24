@@ -1,8 +1,5 @@
 project_id = "yqhwkmmvbajxehlbaasd"
 
-[functions.issue-initial-code]
-verify_jwt = false
-
 [functions.moderate-content]
 verify_jwt = true
 
