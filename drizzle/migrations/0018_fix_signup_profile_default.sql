@@ -1,0 +1,1 @@
+ALTER TABLE public.member_profiles ALTER COLUMN relationship_goal SET DEFAULT 'Amizade cristã';

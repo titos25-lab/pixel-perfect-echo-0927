@@ -1,7 +1,7 @@
 # LigaPro MZ
 
 - [ ] Pedido actual: corrigir o registo, criação automática do perfil e confirmação por email.
-- [ ] Pedido actual: verificar o acesso à conta e o envio do email (personalização depende de domínio próprio).
+- [ ] Pedido actual: verificar o acesso à conta e o envio do email para o endereço indicado pelo utilizador.
 
 - [ ] Etapa 1: identidade visual e página inicial.
 - [ ] Etapa 1: registo, login e perfis de clientes/profissionais.

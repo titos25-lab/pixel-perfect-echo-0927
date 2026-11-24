@@ -127,6 +127,13 @@
       "when": 1795620000014,
       "tag": "0017_repair_account_signup",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1795620000015,
+      "tag": "0018_fix_signup_profile_default",
+      "breakpoints": true
     }
   ]
 }
