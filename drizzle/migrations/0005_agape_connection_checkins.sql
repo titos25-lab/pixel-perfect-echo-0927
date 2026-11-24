@@ -24,7 +24,7 @@ BEGIN
 END $$;
 
 CREATE OR REPLACE FUNCTION public.stamp_connection_accepted_at()
-RETURNS trigger LANGUAGE plpgsql AS $
+RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
  IF NEW.status='accepted' AND OLD.status IS DISTINCT FROM 'accepted' THEN
    NEW.accepted_at=now();
@@ -32,7 +32,7 @@ BEGIN
    NEW.accepted_at=OLD.accepted_at;
  END IF;
  RETURN NEW;
-END $;
+END $$;
 DROP TRIGGER IF EXISTS stamp_connection_accepted_at ON public.connection_requests;
 CREATE TRIGGER stamp_connection_accepted_at BEFORE UPDATE ON public.connection_requests
 FOR EACH ROW EXECUTE FUNCTION public.stamp_connection_accepted_at();

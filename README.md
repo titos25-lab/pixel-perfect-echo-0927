@@ -33,4 +33,4 @@ supabase functions deploy verify-profile-photo --project-ref yqhwkmmvbajxehlbaas
 A função de moderação é chamada antes de publicar posts, comentários e enviar mensagens. Se a função ou a chave não estiver disponível, o conteúdo não é enviado. A função de fotografias rejeita imagens que não mostrem um rosto claramente visível, bem como imagens inadequadas. A revisão automática pode errar e não constitui verificação de identidade nem prova de idade.
 
 ## Privacidade
-O conteúdo de publicações, comentários e mensagens submetido à moderação é enviado ao fornecedor de moderação por IA para análise. Esta utilização deve estar descrita na política de privacidade e nos termos da plataforma. As informações de igreja são opcionais e o utilizador pode deixá-las em branco.
+O conteúdo de publicações, comentários e mensagens submetido à moderação é enviado ao fornecedor de moderação por IA para análise. Esta utilização deve estar descrita na política de privacidade e nos termos da plataforma. A política pública de privacidade está disponível em /privacidade. As informações de igreja são opcionais e o utilizador pode deixá-las em branco.
