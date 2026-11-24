@@ -6,9 +6,9 @@ import { plans, money } from '@/features/marketplace/data';
 export const Route = createFileRoute('/planos')({
   head: () => ({
     meta: [
-      { title: 'Planos mensais para profissionais — Dá Um Touch' },
-      { name: 'description', content: 'Compare os planos mensais da Dá Um Touch para profissionais e empresas moçambicanas, a partir de 150 MT.' },
-      { property: 'og:title', content: 'Planos mensais Dá Um Touch' },
+      { title: 'Planos mensais para profissionais — AGAPE' },
+      { name: 'description', content: 'Compare os planos mensais da AGAPE para profissionais e empresas moçambicanas, a partir de 150 MT.' },
+      { property: 'og:title', content: 'Planos mensais AGAPE' },
       { property: 'og:description', content: 'Mais visibilidade, ferramentas e oportunidades para o seu negócio.' },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -25,7 +25,7 @@ function Plans() {
   return (
     <div className="container section">
       <div className="page-title">
-        <div className="eyebrow">CRESÇA COM A DÁ UM TOUCH</div>
+        <div className="eyebrow">CRESÇA COM A AGAPE</div>
         <h1>O plano certo para fazer crescer o seu negócio.</h1>
         <p>Comece gratuitamente e escolha um plano mensal quando quiser mais ferramentas, visibilidade e oportunidades.</p>
       </div>
@@ -73,7 +73,7 @@ function Plans() {
           <li>Escolha o plano pretendido e crie a sua conta profissional.</li>
           <li>Envie o valor correspondente ao número eMola indicado.</li>
           <li>Guarde o comprovativo e a referência/ID da transacção.</li>
-          <li>Envie o comprovativo à equipa Dá Um Touch para validação, indicando o seu nome e o plano escolhido.</li>
+          <li>Envie o comprovativo à equipa AGAPE para validação, indicando o seu nome e o plano escolhido.</li>
         </ol>
         <p className="mt-3 text-sm"><strong>Importante:</strong> a subscrição será activada apenas depois da confirmação do pagamento. Não envie PIN, palavra-passe ou código de segurança eMola a ninguém.</p>
       </section>
