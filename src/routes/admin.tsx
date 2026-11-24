@@ -26,6 +26,7 @@ type Professional = {
 type Profile = {
   id: string;
   full_name: string;
+  age: number | null;
   location: string;
   phone: string;
   created_at: string;
@@ -65,7 +66,7 @@ function AdminPage() {
     setError('');
     const [professionalResult, profileResult] = await Promise.all([
       supabase.from('professional_profiles').select('id,user_id,display_name,category,specialty,location,public_phone,is_published,is_verified,is_featured,featured_until,created_at').order('created_at', { ascending: false }),
-      supabase.from('profiles').select('id,full_name,location,phone,created_at').order('created_at', { ascending: false }),
+      supabase.from('profiles').select('id,full_name,age,location,phone,created_at').order('created_at', { ascending: false }),
     ]);
     if (professionalResult.error || profileResult.error) {
       setError('Não foi possível carregar os dados. Confirme as permissões administrativas e as políticas de acesso da base de dados.');
@@ -204,7 +205,7 @@ function AdminPage() {
                 <div className="relative w-full sm:max-w-xs"><Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"/><Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Pesquisar..." className="pl-9"/></div>
               </div>
               {section === 'professionals' ? <ProfessionalTable items={filteredProfessionals} busyId={busyId} onUpdate={updateProfessional} onDelete={deleteProfessional} onFeature={toggleFeatured}/> : (
-                <div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead className="bg-muted/50 text-xs uppercase text-muted-foreground"><tr><th className="px-4 py-3">Nome</th><th className="px-4 py-3">Localização</th><th className="px-4 py-3">Contacto</th><th className="px-4 py-3">Registo</th></tr></thead><tbody className="divide-y">{filteredProfiles.map((p) => <tr key={p.id}><td className="px-4 py-3 font-medium">{p.full_name || 'Sem nome'}</td><td className="px-4 py-3">{p.location || '—'}</td><td className="px-4 py-3">{p.phone || '—'}</td><td className="px-4 py-3 text-muted-foreground">{new Date(p.created_at).toLocaleDateString('pt-MZ')}</td></tr>)}</tbody></table>{filteredProfiles.length === 0 && <EmptyState text="Nenhum utilizador encontrado."/>}</div>
+                <div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead className="bg-muted/50 text-xs uppercase text-muted-foreground"><tr><th className="px-4 py-3">Nome</th><th className="px-4 py-3">Idade</th><th className="px-4 py-3">Localização</th><th className="px-4 py-3">Contacto</th><th className="px-4 py-3">Registo</th></tr></thead><tbody className="divide-y">{filteredProfiles.map((p) => <tr key={p.id}><td className="px-4 py-3 font-medium">{p.full_name || 'Sem nome'}</td><td className="px-4 py-3">{p.age ?? '—'}</td><td className="px-4 py-3">{p.location || '—'}</td><td className="px-4 py-3">{p.phone || '—'}</td><td className="px-4 py-3 text-muted-foreground">{new Date(p.created_at).toLocaleDateString('pt-MZ')}</td></tr>)}</tbody></table>{filteredProfiles.length === 0 && <EmptyState text="Nenhum utilizador encontrado."/>}</div>
               )}
             </section>
           )}
