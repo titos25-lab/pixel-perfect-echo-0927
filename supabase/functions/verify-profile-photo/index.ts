@@ -31,8 +31,8 @@ Deno.serve(async (request: Request) => {
         model: "gpt-4o-mini",
         response_format: { type: "json_object" },
         messages: [
-          { role: "system", content: "You are a profile-photo safety reviewer. Do not identify the person or estimate their age, identity, ethnicity, gender, religion, or any sensitive trait. Decide only whether the image is suitable as a profile photo. Return JSON with keys approved (boolean) and reason (short string). Approve only when one clearly visible human face is the main subject, the image is a normal non-explicit portrait, and it is not a logo, landscape, building, church interior, object, group photo, or image of another person's artwork. Reject sexual, nude, violent, hateful, deceptive, or non-face images. If uncertain, reject." },
-          { role: "user", content: [{ type: "text", text: "Review this uploaded AGAPE profile photo. Does it show one clear face as the main subject and meet the stated rules?" }, { type: "image_url", image_url: { url: imageUrl } }] }
+          { role: "system", content: "You are a profile-photo safety reviewer. Do not identify the person or estimate their age, identity, ethnicity, gender, religion, or any sensitive trait. Decide only whether the image is suitable as a profile photo. Return JSON with keys approved (boolean) and reason (short string). Approve safe, non-explicit images that can reasonably represent a member. A face is NOT required: landscapes, objects, activities, church settings, group photos, artwork, and other non-face images may be approved when lawful and non-deceptive. Reject sexual, nude, violent, hateful, illegal, or clearly deceptive content. Do not require a face or infer personal traits." },
+          { role: "user", content: [{ type: "text", text: "Review this uploaded AGAPE profile photo. Does this image meet the stated safety rules? A human face is not required." }, { type: "image_url", image_url: { url: imageUrl } }] }
         ]
       })
     });
