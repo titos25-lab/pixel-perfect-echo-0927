@@ -4,7 +4,7 @@ import {MapPin,MessageCircle,Flag,ShieldCheck,Ban} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {supabase} from "@/integrations/supabase/client";
 import {useAuth} from "@/features/account/auth-context";
-export const Route=createFileRoute("/profissionais_/$id")({ssr:false,beforeLoad:async()=>{const {data}=await supabase.auth.getUser();if(!data.user)throw redirect({to:"/auth"});},head:()=>({meta:[{title:"Perfil — AGAPE"}]}),component:MemberPage});
+export const Route=createFileRoute("/membro_/$id")({ssr:false,beforeLoad:async()=>{const {data}=await supabase.auth.getUser();if(!data.user)throw redirect({to:"/auth"});},head:()=>({meta:[{title:"Perfil — AGAPE"}]}),component:MemberPage});
 type Member={user_id:string;display_name:string;age:number|null;occupation:string;denomination:string;church_name:string;ministry_area:string;location:string;bio:string;relationship_goal:string;photo_path:string|null;is_verified:boolean};
 function MemberPage(){const {id}=Route.useParams();const {user}=useAuth();const [member,setMember]=useState<Member|null>(null);const [notice,setNotice]=useState("");const [busy,setBusy]=useState(false);
 useEffect(()=>{async function load(){const {data}=await supabase.from("member_profiles").select("*").eq("user_id",id).maybeSingle();setMember(data as Member|null);}void load();},[id]);
