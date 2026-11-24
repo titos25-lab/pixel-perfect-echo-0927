@@ -78,6 +78,13 @@
       "when": 1795620000007,
       "tag": "0010_agape_profile_protections",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1795620000008,
+      "tag": "0011_agape_request_integrity",
+      "breakpoints": true
     }
   ]
 }

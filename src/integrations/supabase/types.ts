@@ -34,7 +34,7 @@ export type Database = {
       };
       connection_requests: {
         Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; accepted_at:string|null; sender_checkin:string|null; receiver_checkin:string|null; checkin_prompted_at:string|null; created_at:string; updated_at:string };
-        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; accepted_at?:string|null; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
+        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
         Update: { id?:string; sender_id?:string; receiver_id?:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
         Relationships: [];
       };
