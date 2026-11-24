@@ -64,7 +64,7 @@ Deno.serve(async (req) => {
     });
     const initialCode = makeInitialCode();
     const safeName = escapeHtml(name.trim());
-    const appUrl = (Deno.env.get("APP_URL") || req.headers.get("origin") || "").replace(/\/$/, "");
+    const appUrl = (Deno.env.get("APP_URL") || "https://pixel-perfect-echo-0927.lovable.app").replace(/\/$/, "");
     const loginUrl = appUrl ? `${appUrl}/auth?modo=entrar` : "";
     const loginButton = loginUrl ? `<p style="margin:28px 0"><a href="${loginUrl}" style="display:inline-block;background:#111;color:#fff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:bold">Voltar à Dá Um Touch e entrar</a></p>` : "";
     const { data, error: createError } = await admin.auth.admin.createUser({
