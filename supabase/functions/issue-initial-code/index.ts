@@ -84,11 +84,11 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: `DA UM TOUCH <${fromEmail}>`,
+        from: `Dá Um Touch <${fromEmail}>`,
         to: [email.trim().toLowerCase()],
         subject: "O seu código permanente de acesso — Dá Um Touch",
         html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#202124"><h1 style="color:#111">Dá Um Touch</h1><p>Olá, ${safeName},</p><p>A sua conta foi criada. Este é o seu código permanente de acesso:</p><div style="background:#f3f4f6;padding:18px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:3px;border-radius:8px">${initialCode}</div><p>Volte à plataforma e escolha <strong>Entrar</strong>. Introduza o seu email e este código. Não precisa de criar uma palavra-passe.</p>${loginButton}<p>Guarde este código num local seguro. Ele continuará válido até ser alterado por si nas definições da conta. Nunca o partilhe com ninguém.</p><p>Bem-vindo à Dá Um Touch.</p></div>`,
-        text: `DA UM TOUCH\n\nOlá, ${name.trim()}. A sua conta foi criada. O seu código inicial de acesso é: ${initialCode}\n\nEntre com o seu email e este código. Depois, altere-o nas definições da sua conta. Não partilhe o código com ninguém.`,
+        text: `Dá Um Touch\n\nOlá, ${name.trim()}. A sua conta foi criada. O seu código permanente de acesso é: ${initialCode}\n\nVolte à plataforma, escolha Entrar e introduza o seu email e este código. Não precisa de criar uma palavra-passe.\n\n${loginUrl ? `Aceder à página de entrada: ${loginUrl}\n\n` : ""}Guarde o código num local seguro. Ele continuará válido até ser alterado por si. Não o partilhe com ninguém.`,
       }),
     });
 
