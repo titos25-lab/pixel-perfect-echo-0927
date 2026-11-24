@@ -99,6 +99,13 @@
       "when": 1795620000010,
       "tag": "0013_agape_profile_family_details",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1795620000011,
+      "tag": "0014_agape_structured_location",
+      "breakpoints": true
     }
   ]
 }
