@@ -62,6 +62,12 @@ export type Database = {
         Update: { id?:string; reporter_id?:string; reported_user_id?:string; category?:string; details?:string; status?:string; reviewed_by?:string|null; created_at?:string; updated_at?:string };
         Relationships: [];
       };
+      couple_posts: {
+        Row:{id:string;journey_id:string;author_id:string;couple_label:string;body:string;created_at:string};
+        Insert:{id?:string;journey_id:string;author_id:string;couple_label?:string;body:string;created_at?:string};
+        Update:{id?:string;journey_id?:string;author_id?:string;couple_label?:string;body?:string;created_at?:string};
+        Relationships:[];
+      };
       couple_journeys: {
         Row: { id:string; initiated_by:string; partner_id:string; status:string; started_at:string|null; created_at:string };
         Insert: { id?:string; initiated_by:string; partner_id:string; status?:string; started_at?:string|null; created_at?:string };
