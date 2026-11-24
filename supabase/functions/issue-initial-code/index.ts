@@ -42,9 +42,9 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "Método não permitido." }, 405);
 
   try {
-    const { email, name } = await req.json();
+    const { email, name, age, accountType } = await req.json();
     if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-        typeof name !== "string" || name.trim().length < 2 || name.trim().length > 100) {
+        typeof name !== "string" || name.trim().length < 2 || name.trim().length > 100 ||\n        !Number.isInteger(age) || age < 18 || age > 100 ||\n        !["client", "professional"].includes(accountType)) {
       return json({ error: "Indique um nome e email válidos." }, 400);
     }
 
@@ -61,12 +61,12 @@ Deno.serve(async (req) => {
       auth: { autoRefreshToken: false, persistSession: false },
     });
     const initialCode = makeInitialCode();
-    const safeName = escapeHtml(name.trim());
+    const safeName = escapeHtml(name.trim());\n    const appUrl = (Deno.env.get("APP_URL") || req.headers.get("origin") || "").replace(/\\/$/, "");\n    const loginUrl = appUrl ? `${appUrl}/auth?modo=entrar` : "";\n    const loginButton = loginUrl ? `<p style="margin:28px 0"><a href="${loginUrl}" style="display:inline-block;background:#111;color:#fff;text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:bold">Voltar à Dá Um Touch e entrar</a></p>` : "";
     const { data, error: createError } = await admin.auth.admin.createUser({
       email: email.trim().toLowerCase(),
       password: initialCode,
       email_confirm: true,
-      user_metadata: { full_name: name.trim() },
+      user_metadata: { full_name: name.trim(), age: String(age), account_type: accountType },
     });
     if (createError || !data.user) {
       const message = createError?.message ?? "Não foi possível criar a conta.";
@@ -86,8 +86,8 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         from: `DA UM TOUCH <${fromEmail}>`,
         to: [email.trim().toLowerCase()],
-        subject: "O seu código inicial de acesso — DA UM TOUCH",
-        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#202124"><h1 style="color:#111">DA UM TOUCH</h1><p>Olá, ${safeName},</p><p>A sua conta foi criada. Use o código abaixo para entrar na plataforma:</p><div style="background:#f3f4f6;padding:18px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:3px;border-radius:8px">${initialCode}</div><p>Por segurança, altere este código depois de entrar, nas definições da sua conta. Não partilhe este código com ninguém.</p><p>Bem-vindo à DA UM TOUCH.</p></div>`,
+        subject: "O seu código permanente de acesso — Dá Um Touch",
+        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#202124"><h1 style="color:#111">Dá Um Touch</h1><p>Olá, ${safeName},</p><p>A sua conta foi criada. Este é o seu código permanente de acesso:</p><div style="background:#f3f4f6;padding:18px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:3px;border-radius:8px">${initialCode}</div><p>Volte à plataforma e escolha <strong>Entrar</strong>. Introduza o seu email e este código. Não precisa de criar uma palavra-passe.</p>${loginButton}<p>Guarde este código num local seguro. Ele continuará válido até ser alterado por si nas definições da conta. Nunca o partilhe com ninguém.</p><p>Bem-vindo à Dá Um Touch.</p></div>`,
         text: `DA UM TOUCH\n\nOlá, ${name.trim()}. A sua conta foi criada. O seu código inicial de acesso é: ${initialCode}\n\nEntre com o seu email e este código. Depois, altere-o nas definições da sua conta. Não partilhe o código com ninguém.`,
       }),
     });
