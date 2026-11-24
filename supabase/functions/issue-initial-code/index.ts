@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
     const { email, name, age, accountType } = await req.json();
     if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
         typeof name !== "string" || name.trim().length < 2 || name.trim().length > 100 ||
-        !Number.isInteger(age) || age < 18 || age > 100 ||
+        !Number.isInteger(age) || age < 1 || age > 120 ||
         !["client", "professional"].includes(accountType)) {
       return json({ error: "Indique um nome e email válidos." }, 400);
     }
