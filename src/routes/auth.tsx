@@ -17,7 +17,7 @@ function AuthPage(){
  async function register(e:FormEvent){
   e.preventDefault();setError('');
   const numericAge=Number(age);
-  if(!Number.isInteger(numericAge)||numericAge<18||numericAge>100){setError('Indique uma idade válida (18 a 100 anos).');return;}
+  if(!Number.isInteger(numericAge)||numericAge<18||numericAge>100){setError('Indique uma idade válida entre 1 e 120 anos.');return;}
   setBusy(true);
   try{
    const {data,error:invokeError}=await supabase.functions.invoke('issue-initial-code',{body:{email:email.trim().toLowerCase(),name:name.trim(),age:numericAge,accountType:type}});
