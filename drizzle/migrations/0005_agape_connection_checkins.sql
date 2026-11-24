@@ -1,7 +1,7 @@
 -- AGAPE: public age and bilateral 14-day connection check-in
 ALTER TABLE public.member_profiles ADD COLUMN IF NOT EXISTS age smallint;
 ALTER TABLE public.member_profiles ADD CONSTRAINT member_profiles_age_adult CHECK(age IS NULL OR age BETWEEN 18 AND 100);
-UPDATE public.member_profiles mp SET age=p.age FROM public.profiles p WHERE p.id=mp.user_id AND mp.age IS NULL;
+UPDATE public.member_profiles mp SET age=p.age FROM public.profiles p WHERE p.id=mp.user_id AND mp.age IS NULL AND p.age BETWEEN 18 AND 100;
 
 ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS accepted_at timestamptz;
 ALTER TABLE public.connection_requests ADD COLUMN IF NOT EXISTS sender_checkin text CHECK(sender_checkin IS NULL OR sender_checkin IN ('continue','relationship','close'));
