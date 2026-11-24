@@ -92,6 +92,13 @@
       "when": 1795620000009,
       "tag": "0012_agape_age_and_feed_privacy",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1795620000010,
+      "tag": "0013_agape_profile_family_details",
+      "breakpoints": true
     }
   ]
 }
