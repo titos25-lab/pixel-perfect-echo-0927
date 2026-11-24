@@ -44,8 +44,8 @@ export const Route = createFileRoute('/admin')({
   },
   head: () => ({
     meta: [
-      { title: 'Administração — DA UM TOUCH' },
-      { name: 'description', content: 'Painel de administração da DA UM TOUCH.' },
+      { title: 'Administração — Dá Um Touch' },
+      { name: 'description', content: 'Painel de administração da Dá Um Touch.' },
     ],
   }),
   component: AdminPage,
@@ -141,7 +141,7 @@ function AdminPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
           <Link to="/" className="flex items-center gap-3 font-bold tracking-tight text-foreground">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground"><ShieldCheck size={21}/></span>
-            <span>DA UM TOUCH <span className="ml-1 text-xs font-medium text-muted-foreground">ADMIN</span></span>
+            <span>Dá Um Touch <span className="ml-1 text-xs font-medium text-muted-foreground">ADMIN</span></span>
           </Link>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={() => void loadData()} disabled={loading}><RefreshCw size={15} className="mr-2"/>Actualizar</Button>
@@ -174,7 +174,7 @@ function AdminPage() {
             <h1 className="mt-1 text-3xl font-bold tracking-tight text-foreground">
               {section === 'overview' ? 'Visão geral' : section === 'professionals' ? 'Gestão de profissionais' : 'Utilizadores registados'}
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground">Administração da plataforma DA UM TOUCH.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Administração da plataforma Dá Um Touch.</p>
           </div>
 
           {error && <div role="alert" className="flex items-start gap-2 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive"><AlertCircle size={18} className="mt-0.5 shrink-0"/>{error}</div>}
