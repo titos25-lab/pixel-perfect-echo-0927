@@ -134,6 +134,13 @@
       "when": 1795620000015,
       "tag": "0018_fix_signup_profile_default",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1795620000016,
+      "tag": "0019_agape_profile_photo_20mb",
+      "breakpoints": true
     }
   ]
 }
