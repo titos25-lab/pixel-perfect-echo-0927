@@ -32,6 +32,12 @@ INSERT INTO public.user_roles(user_id,role)
 SELECT id,'admin'::public.app_role FROM auth.users WHERE lower(email)='pcatitos@gmail.com'
 ON CONFLICT(user_id,role) DO NOTHING;
 
+CREATE OR REPLACE FUNCTION public.has_role(_user_id uuid,_role public.app_role)
+RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path=public AS $
+  SELECT EXISTS(SELECT 1 FROM public.user_roles WHERE user_id=_user_id AND role=_role)
+    AND (_role <> 'admin' OR EXISTS(SELECT 1 FROM auth.users WHERE id=_user_id AND lower(email)='pcatitos@gmail.com'))
+$;
+
 DROP POLICY IF EXISTS professional_admin_update ON public.professional_profiles;
 CREATE POLICY professional_admin_update ON public.professional_profiles FOR UPDATE TO authenticated
 USING(public.has_role(auth.uid(),'admin')) WITH CHECK(public.has_role(auth.uid(),'admin'));
