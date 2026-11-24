@@ -1,6 +1,7 @@
 ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS age smallint;
 ALTER TABLE public.professional_profiles ADD COLUMN IF NOT EXISTS is_featured boolean NOT NULL DEFAULT false;
 ALTER TABLE public.professional_profiles ADD COLUMN IF NOT EXISTS featured_until timestamptz;
+GRANT DELETE ON public.professional_profiles TO authenticated;
 DELETE FROM public.professional_profiles WHERE is_demo = true;
 
 CREATE OR REPLACE FUNCTION public.handle_new_user()
