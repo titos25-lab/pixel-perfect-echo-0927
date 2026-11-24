@@ -14,6 +14,18 @@ export type Database = {
   }
   public: {
     Tables: {
+      user_blocks: {
+        Row: { id:string; blocker_id:string; blocked_id:string; created_at:string };
+        Insert: { id?:string; blocker_id:string; blocked_id:string; created_at?:string };
+        Update: { id?:string; blocker_id?:string; blocked_id?:string; created_at?:string };
+        Relationships: [];
+      };
+      post_comments: {
+        Row: { id:string; post_id:string; author_id:string; body:string; created_at:string };
+        Insert: { id?:string; post_id:string; author_id:string; body:string; created_at?:string };
+        Update: { id?:string; post_id?:string; author_id?:string; body?:string; created_at?:string };
+        Relationships: [];
+      };
       member_profiles: {
         Row: { user_id:string; display_name:string; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; bio:string; relationship_goal:string; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
         Insert: { user_id:string; display_name?:string; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
