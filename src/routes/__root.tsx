@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -125,11 +126,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isAuthScreen = pathname === "/auth";
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <AuthProvider><Header /><main><Outlet /></main><Footer /><Toaster richColors /></AuthProvider>
+      <AuthProvider>{!isAuthScreen && <Header />}<main><Outlet /></main>{!isAuthScreen && <Footer />}<Toaster richColors /></AuthProvider>
     </QueryClientProvider>
   );
 }
