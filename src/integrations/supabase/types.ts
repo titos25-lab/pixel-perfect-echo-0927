@@ -20,8 +20,10 @@ export type Database = {
           category: string
           created_at: string
           display_name: string
+          featured_until: string | null
           id: string
           is_demo: boolean
+          is_featured: boolean
           is_published: boolean
           is_verified: boolean
           location: string
@@ -35,8 +37,10 @@ export type Database = {
           category?: string
           created_at?: string
           display_name: string
+          featured_until?: string | null
           id?: string
           is_demo?: boolean
+          is_featured?: boolean
           is_published?: boolean
           is_verified?: boolean
           location?: string
@@ -50,8 +54,10 @@ export type Database = {
           category?: string
           created_at?: string
           display_name?: string
+          featured_until?: string | null
           id?: string
           is_demo?: boolean
+          is_featured?: boolean
           is_published?: boolean
           is_verified?: boolean
           location?: string
@@ -72,6 +78,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          age: number | null
           avatar_path: string | null
           created_at: string
           full_name: string
@@ -80,6 +87,7 @@ export type Database = {
           phone: string
         }
         Insert: {
+          age?: number | null
           avatar_path?: string | null
           created_at?: string
           full_name?: string
@@ -88,6 +96,7 @@ export type Database = {
           phone?: string
         }
         Update: {
+          age?: number | null
           avatar_path?: string | null
           created_at?: string
           full_name?: string

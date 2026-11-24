@@ -15,6 +15,13 @@
       "when": 1795540000000,
       "tag": "0001_daum_touch_accounts_and_moderation",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795540000001,
+      "tag": "0002_daum_touch_accounts_and_moderation",
+      "breakpoints": true
     }
   ]
 }
