@@ -1,23 +1,32 @@
-# Configuração do envio de códigos iniciais — DA UM TOUCH
+# Registo e códigos permanentes — Dá Um Touch
 
-A função `issue-initial-code` cria a conta no Supabase Auth e envia um código inicial por email através da Resend API. O código é a palavra-passe inicial da conta; o utilizador pode substituí-lo em **Minha conta → Segurança e código de acesso**.
+A Edge Function `issue-initial-code` cria uma conta no Supabase Auth, guarda nome, idade e tipo de conta nos metadados do utilizador e envia por email um código permanente de acesso através da Resend API. O utilizador não escolhe uma palavra-passe durante o registo. O código recebido funciona como credencial de entrada e pode ser alterado depois em **Minha conta → Segurança e código de acesso**.
 
 ## Requisitos
 
 1. Uma conta Resend com um domínio de envio verificado.
-2. O endereço remetente verificado no Resend (por exemplo, `acesso@seudominio.co.mz`).
+2. O endereço remetente verificado no Resend.
 3. Supabase CLI autenticada e ligada ao projecto `yqhwkmmvbajxehlbaasd`.
 
-## Configurar os segredos
-
-No terminal, a partir da raiz do repositório:
+## Segredos da Edge Function
 
 ```bash
 supabase secrets set RESEND_API_KEY=re_xxxxxxxxx
 supabase secrets set FROM_EMAIL=acesso@seudominio.co.mz
+supabase secrets set APP_URL=https://pixel-perfect-echo-0927.lovable.app
 ```
 
-O Supabase disponibiliza `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` no ambiente das Edge Functions. **Nunca** coloque a service role key no frontend, no GitHub ou em ficheiros públicos.
+O Supabase disponibiliza `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` no ambiente das Edge Functions. Nunca coloque a service role key no frontend, no GitHub ou em ficheiros públicos.
+
+## Aplicar a migração da base de dados
+
+A migração `drizzle/migrations/0001_daum_touch_accounts_and_moderation.sql` acrescenta idade, atribui a função de administrador exclusivamente ao email autorizado, remove perfis de demonstração e activa os campos e permissões de destaque Premium.
+
+No ambiente que tenha a variável segura `LOVABLE_DB_MIGRATION_URL` configurada:
+
+```bash
+bunx drizzle-kit migrate
+```
 
 ## Publicar a Edge Function
 
@@ -25,12 +34,12 @@ O Supabase disponibiliza `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` no ambient
 supabase functions deploy issue-initial-code --project-ref yqhwkmmvbajxehlbaasd
 ```
 
-O nome apresentado ao destinatário será **DA UM TOUCH**. O endereço real do remetente é o valor verificado configurado em `FROM_EMAIL`.
-
 ## Teste recomendado
 
-1. Abra a página de registo da DA UM TOUCH.
-2. Crie uma conta com um email que possa consultar.
-3. Confirme que recebeu a mensagem com assunto **O seu código inicial de acesso — DA UM TOUCH**.
-4. Entre com email e código recebido.
-5. Em Minha conta, altere o código e confirme que consegue entrar com o novo código.
+1. Abra a Dá Um Touch e escolha **Criar conta**.
+2. Seleccione **Sou cliente** ou **Sou profissional**.
+3. Preencha nome completo, idade e email.
+4. Confirme que recebe o código permanente e a ligação para a página **Entrar**.
+5. Entre com email e código.
+6. Na área pessoal, altere o código e confirme que consegue entrar com o novo código.
+7. Confirme que a área administrativa só abre com o email autorizado e que consegue verificar, publicar, destacar por 30 dias e remover perfis profissionais.
