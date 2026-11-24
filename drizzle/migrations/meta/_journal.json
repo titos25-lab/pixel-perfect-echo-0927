@@ -141,6 +141,13 @@
       "when": 1795620000016,
       "tag": "0019_agape_profile_photo_20mb",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1795620000017,
+      "tag": "0020_agape_post_media",
+      "breakpoints": true
     }
   ]
 }
