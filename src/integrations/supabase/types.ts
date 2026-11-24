@@ -88,7 +88,6 @@ export type Database = {
         }
         Insert: {
           age?: number | null
-          age?: number | null
           avatar_path?: string | null
           created_at?: string
           full_name?: string
@@ -97,6 +96,7 @@ export type Database = {
           phone?: string
         }
         Update: {
+          age?: number | null
           avatar_path?: string | null
           created_at?: string
           full_name?: string
