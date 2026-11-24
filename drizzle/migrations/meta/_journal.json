@@ -8,6 +8,13 @@
       "when": 1795195740027,
       "tag": "0000_ligapro_initial_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795540000000,
+      "tag": "0001_daum_touch_accounts_and_moderation",
+      "breakpoints": true
     }
   ]
 }
