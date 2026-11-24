@@ -2,25 +2,35 @@
 
 AGAPE é uma plataforma de relacionamentos cristãos com funcionalidades de rede social, destinada a adultos solteiros de todas as denominações cristãs.
 
-## Funcionalidades implementadas no projecto
-- Registo e autenticação por email.
-- Perfis pessoais e cristãos.
-- Descoberta de membros por cidade e objectivo.
-- Pedidos de conversa com aceitação ou recusa.
-- Mensagens privadas após aceitação.
-- Feed comunitário com publicações e gostos.
-- Pedidos de associação de perfis de casal.
+## Funcionalidades no código
+- Registo e autenticação por email, com idade mínima de 18 anos.
+- Perfis pessoais e cristãos, localização, denominação, profissão e área de serviço.
+- Descoberta de membros e filtros por cidade e objectivo.
+- Pedidos de conversa que o destinatário pode aceitar ou recusar.
+- Mensagens privadas apenas depois da aceitação.
+- Feed com publicações, gostos e comentários.
+- Check-in bilateral após 14 dias de conexão.
+- Convites para associar perfis de casal em Nossa Jornada.
 - Denúncias, bloqueios e painel administrativo.
-- Regras de comunidade e restrição de registo a maiores de 18 anos.
+- Moderação automática de texto e verificação de fotografias de perfil por IA, através de funções Supabase.
 
 ## Stack
-React 19, TypeScript, TanStack Start/Router, Tailwind CSS e Supabase Auth/Postgres/Storage com Row Level Security.
+React 19, TypeScript, TanStack Start/Router, Tailwind CSS, Supabase Auth/Postgres/Storage e Row Level Security.
 
-## Activação
-Configura as variáveis Supabase já utilizadas pelo projecto e aplica as migrações:
+## Configuração e activação
+Configura as variáveis Supabase já utilizadas pelo projecto e aplica todas as migrações:
 ```bash
 bunx drizzle-kit migrate
 ```
-A migração 0003 cria as tabelas sociais e a migração 0004 cria bloqueios e comentários. Estas migrações ainda precisam de ser aplicadas no projecto Supabase ligado.
+As migrações 0003 a 0006 criam perfis sociais, mensagens, feed, segurança, check-ins e bloqueios.
 
-A moderação automática por IA e a validação de fotografias de rosto requerem um serviço de moderação e credenciais próprias. As ferramentas de denúncia e revisão administrativa não substituem essa integração.
+Configura o segredo `OPENAI_API_KEY` no projecto Supabase e publica as funções:
+```bash
+supabase secrets set OPENAI_API_KEY=...
+supabase functions deploy moderate-content --project-ref yqhwkmmvbajxehlbaasd
+supabase functions deploy verify-profile-photo --project-ref yqhwkmmvbajxehlbaasd
+```
+A função de moderação é chamada antes de publicar posts, comentários e enviar mensagens. Se a função ou a chave não estiver disponível, o conteúdo não é enviado. A função de fotografias rejeita imagens que não mostrem um rosto claramente visível, bem como imagens inadequadas. A revisão automática pode errar e não constitui verificação de identidade nem prova de idade.
+
+## Privacidade
+O conteúdo de publicações, comentários e mensagens submetido à moderação é enviado ao fornecedor de moderação por IA para análise. Esta utilização deve estar descrita na política de privacidade e nos termos da plataforma. As informações de igreja são opcionais e o utilizador pode deixá-las em branco.

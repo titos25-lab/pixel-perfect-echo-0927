@@ -43,6 +43,13 @@
       "when": 1795620000002,
       "tag": "0005_agape_connection_checkins",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1795620000003,
+      "tag": "0006_agape_block_enforcement",
+      "breakpoints": true
     }
   ]
 }
