@@ -27,8 +27,8 @@ export type Database = {
         Relationships: [];
       };
       member_profiles: {
-        Row: { user_id:string; display_name:string; age:number|null; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; bio:string; relationship_goal:string; has_children:boolean; children_count:number|null; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
-        Insert: { user_id:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; has_children?:boolean; children_count?:number|null; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
+        Row: { user_id:string; display_name:string; age:number|null; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; country:string; province:string; neighborhood:string; bio:string; relationship_goal:string; has_children:boolean; children_count:number|null; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
+        Insert: { user_id:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; country?:string; province?:string; neighborhood?:string; bio?:string; relationship_goal?:string; has_children?:boolean; children_count?:number|null; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
         Update: { user_id?:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; bio?:string; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
         Relationships: [];
       };
