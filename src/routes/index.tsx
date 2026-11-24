@@ -1,4 +1,4 @@
-import {createFileRoute,Link,useNavigate} from '@tanstack/react-router';
+import {createFileRoute,Link,useNavigate,redirect} from '@tanstack/react-router';
 import {useSuspenseQuery} from '@tanstack/react-query';
 import {ArrowRight,ShieldCheck,MapPin,Check,UsersRound,HandHeart,BadgeCheck,Star,Search,CalendarCheck,MessageCircle,BriefcaseBusiness} from 'lucide-react';
 import {Button} from '@/components/ui/button';
@@ -6,8 +6,11 @@ import {categories} from '@/features/marketplace/data';
 import {professionalsQuery} from '@/features/marketplace/marketplace.functions';
 import {ProfessionalCard,SearchBar} from '@/features/marketplace/marketplace-ui';
 import hero from '@/assets/ligapro-hero.asset.json';
+import {supabase} from '@/integrations/supabase/client';
 export const Route=createFileRoute('/')({
  head:()=>({meta:[{title:'DA UM TOUCH — Profissionais de confiança em Moçambique'},{name:'description',content:'Encontre profissionais perto de si. Explore serviços de saúde, fotografia, advocacia e muito mais em Moçambique.'},{property:'og:title',content:'DA UM TOUCH — Encontre. Compare. Marque. Contrate.'},{property:'og:description',content:'O talento de Moçambique, mais perto de si. Encontre profissionais e empresas numa só plataforma.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+ ssr:false,
+ beforeLoad:async()=>{const {data,error}=await supabase.auth.getUser();if(error||!data.user)throw redirect({to:'/auth',search:{modo:'escolher'}});},
  loader:({context})=>context.queryClient.ensureQueryData(professionalsQuery()),component:Home,
 });
 function Home(){const {data}=useSuspenseQuery(professionalsQuery());const navigate=useNavigate();return <>
