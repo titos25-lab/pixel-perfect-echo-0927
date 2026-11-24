@@ -14,66 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      user_blocks: {
-        Row: { id:string; blocker_id:string; blocked_id:string; created_at:string };
-        Insert: { id?:string; blocker_id:string; blocked_id:string; created_at?:string };
-        Update: { id?:string; blocker_id?:string; blocked_id?:string; created_at?:string };
-        Relationships: [];
-      };
-      post_comments: {
-        Row: { id:string; post_id:string; author_id:string; body:string; created_at:string };
-        Insert: { id?:string; post_id:string; author_id:string; body:string; created_at?:string };
-        Update: { id?:string; post_id?:string; author_id?:string; body?:string; created_at?:string };
-        Relationships: [];
-      };
-      member_profiles: {
-        Row: { user_id:string; display_name:string; age:number|null; gender:string; occupation:string; denomination:string; church_name:string; ministry_area:string; location:string; country:string; province:string; neighborhood:string; bio:string; relationship_goal:string; has_children:boolean; children_count:number|null; photo_path:string|null; is_active:boolean; is_verified:boolean; created_at:string; updated_at:string };
-        Insert: { user_id:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; country?:string; province?:string; neighborhood?:string; bio?:string; relationship_goal?:string; has_children?:boolean; children_count?:number|null; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
-        Update: { user_id?:string; display_name?:string; age?:number|null; gender?:string; occupation?:string; denomination?:string; church_name?:string; ministry_area?:string; location?:string; country?:string; province?:string; neighborhood?:string; bio?:string; has_children?:boolean; children_count?:number|null; relationship_goal?:string; photo_path?:string|null; is_active?:boolean; is_verified?:boolean; created_at?:string; updated_at?:string };
-        Relationships: [];
-      };
-      connection_requests: {
-        Row: { id:string; sender_id:string; receiver_id:string; initial_message:string; status:string; accepted_at:string|null; sender_checkin:string|null; receiver_checkin:string|null; checkin_prompted_at:string|null; created_at:string; updated_at:string };
-        Insert: { id?:string; sender_id:string; receiver_id:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
-        Update: { id?:string; sender_id?:string; receiver_id?:string; initial_message?:string; status?:string; sender_checkin?:string|null; receiver_checkin?:string|null; checkin_prompted_at?:string|null; created_at?:string; updated_at?:string };
-        Relationships: [];
-      };
-      messages: {
-        Row: { id:string; request_id:string; sender_id:string; body:string; created_at:string; read_at:string|null };
-        Insert: { id?:string; request_id:string; sender_id:string; body:string; created_at?:string; read_at?:string|null };
-        Update: { id?:string; request_id?:string; sender_id?:string; body?:string; created_at?:string; read_at?:string|null };
-        Relationships: [];
-      };
-      posts: {
-        Row: { id:string; author_id:string; body:string; image_url:string|null; created_at:string; updated_at:string };
-        Insert: { id?:string; author_id:string; body:string; image_url?:string|null; created_at?:string; updated_at?:string };
-        Update: { id?:string; author_id?:string; body?:string; image_url?:string|null; created_at?:string; updated_at?:string };
-        Relationships: [];
-      };
-      post_likes: {
-        Row: { id:string; post_id:string; user_id:string; created_at:string };
-        Insert: { id?:string; post_id:string; user_id:string; created_at?:string };
-        Update: { id?:string; post_id?:string; user_id?:string; created_at?:string };
-        Relationships: [];
-      };
-      reports: {
-        Row: { id:string; reporter_id:string; reported_user_id:string; category:string; details:string; status:string; reviewed_by:string|null; created_at:string; updated_at:string };
-        Insert: { id?:string; reporter_id:string; reported_user_id:string; category:string; details?:string; status?:string; reviewed_by?:string|null; created_at?:string; updated_at?:string };
-        Update: { id?:string; reporter_id?:string; reported_user_id?:string; category?:string; details?:string; status?:string; reviewed_by?:string|null; created_at?:string; updated_at?:string };
-        Relationships: [];
-      };
-      couple_posts: {
-        Row:{id:string;journey_id:string;author_id:string;couple_label:string;body:string;created_at:string};
-        Insert:{id?:string;journey_id:string;author_id:string;couple_label?:string;body:string;created_at?:string};
-        Update:{id?:string;journey_id?:string;author_id?:string;couple_label?:string;body?:string;created_at?:string};
-        Relationships:[];
-      };
-      couple_journeys: {
-        Row: { id:string; initiated_by:string; partner_id:string; status:string; started_at:string|null; created_at:string };
-        Insert: { id?:string; initiated_by:string; partner_id:string; status?:string; started_at?:string|null; created_at?:string };
-        Update: { id?:string; initiated_by?:string; partner_id?:string; status?:string; started_at?:string|null; created_at?:string };
-        Relationships: [];
-      };
       professional_profiles: {
         Row: {
           bio: string
@@ -189,8 +129,6 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      is_active_couple_journey: { Args: { _journey_id:string }; Returns: boolean }
-      submit_connection_checkin: { Args: { _request_id:string; _response:string }; Returns: undefined }
       choose_account_type: {
         Args: { account_type: string }
         Returns: undefined
