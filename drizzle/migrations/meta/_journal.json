@@ -71,6 +71,13 @@
       "when": 1795620000006,
       "tag": "0009_agape_public_couple_posts",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1795620000007,
+      "tag": "0010_agape_profile_protections",
+      "breakpoints": true
     }
   ]
 }

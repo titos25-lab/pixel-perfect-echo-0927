@@ -28,6 +28,8 @@ RETURNS trigger LANGUAGE plpgsql AS $
 BEGIN
  IF NEW.status='accepted' AND OLD.status IS DISTINCT FROM 'accepted' THEN
    NEW.accepted_at=now();
+ ELSE
+   NEW.accepted_at=OLD.accepted_at;
  END IF;
  RETURN NEW;
 END $;
