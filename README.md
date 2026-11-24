@@ -22,7 +22,7 @@ Configura as variáveis Supabase já utilizadas pelo projecto e aplica todas as 
 ```bash
 bunx drizzle-kit migrate
 ```
-As migrações 0003 a 0006 criam perfis sociais, mensagens, feed, segurança, check-ins e bloqueios.
+As migrações 0003 a 0008 criam perfis sociais, mensagens, feed, segurança, check-ins e bloqueios.
 
 Configura o segredo `OPENAI_API_KEY` no projecto Supabase e publica as funções:
 ```bash

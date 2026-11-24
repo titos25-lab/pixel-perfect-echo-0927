@@ -13,7 +13,7 @@ async function load(){if(!user)return;const {data}=await supabase.from("connecti
 useEffect(()=>{void load();},[user?.id]);
 const active=requests.find(r=>r.id===selected);const partner=active?(active.sender_id===user?.id?active.receiver_id:active.sender_id):"";
 async function loadMessages(){if(!active||active.status!=="accepted")return;const {data}=await supabase.from("messages").select("*").eq("request_id",active.id).order("created_at");setMessages((data??[]) as Msg[]);}
-useEffect(()=>{void loadMessages();},[selected,requests.length]);
+useEffect(()=>{void loadMessages();if(!active)return;const channel=supabase.channel("agape-chat-"+active.id).on("postgres_changes",{event:"INSERT",schema:"public",table:"messages",filter:"request_id=eq."+active.id},()=>{void loadMessages();}).subscribe();return()=>{void supabase.removeChannel(channel);};},[selected,requests.length]);
 async function send(e:FormEvent){e.preventDefault();if(!active||!user||!body.trim())return;setBusy(true);const {data:moderation,error:moderationError}=await supabase.functions.invoke("moderate-content",{body:{text:body.trim(),content_type:"private_message"}});
 if(moderationError){setError("A moderação de segurança está temporariamente indisponível. Tenta mais tarde.");setBusy(false);return;}
 if(moderation?.flagged){setError("Esta mensagem não está de acordo com os princípios da comunidade AGAPE.");setBusy(false);return;}

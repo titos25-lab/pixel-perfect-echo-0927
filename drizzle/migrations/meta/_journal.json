@@ -57,6 +57,13 @@
       "when": 1795620000004,
       "tag": "0007_agape_couple_posts",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1795620000005,
+      "tag": "0008_agape_chat_realtime",
+      "breakpoints": true
     }
   ]
 }
